@@ -1,4 +1,4 @@
-# API Candy Soft - Proyecto Modularizado  
+## API Candy Soft - Proyecto Modularizado  
 
 API **Candy Soft** es un sistema modularizado diseñado para la gestión integral de un **spa de uñas**.  
 Su objetivo principal es ofrecer una arquitectura **organizada, escalable y mantenible**, donde cada módulo represente una funcionalidad independiente del negocio.  
@@ -17,7 +17,7 @@ Su objetivo principal es ofrecer una arquitectura **organizada, escalable y mant
 
 ---
 
-# Tecnologías utilizadas  
+## Tecnologías utilizadas  
 
 Antes de comenzar, debes de tener instaladas las siguientes herramientas:  
 
@@ -35,11 +35,12 @@ Antes de comenzar, debes de tener instaladas las siguientes herramientas:
 
 ---
 
-# Instalación y despliegue
+## Instalación y despliegue
+```bash
 
-### 1. Clonar el repositorio  
+# 1. Clonar el repositorio  
 
-#### Opción 1: Clonar desde GitHub  
+# Opción 1: Clonar desde GitHub  
 1. Entra al repositorio en GitHub y da clic en el botón **Code**.  
 2. Copia el enlace HTTPS que aparece.  
 3. Abre **Visual Studio Code (VS Code)**.  
@@ -49,14 +50,14 @@ Antes de comenzar, debes de tener instaladas las siguientes herramientas:
 7. Selecciona la carpeta en tu equipo donde quieras guardar el proyecto.  
 8. Una vez finalizada la clonación, **VS Code** abrirá automáticamente el proyecto.  
 
-#### Opción 2: Descargar en ZIP  
+# Opción 2: Descargar en ZIP  
 1. Entra al repositorio en GitHub y da clic en el botón **Code**.  
 2. Selecciona la opción **Download ZIP**.  
    - Esto descargará el proyecto comprimido en tu computador.  
 3. Una vez descargado, busca el archivo donde se haya descargado. 
 4. Descomprime el archivo y ábrelo en **VS Code**. 
 
-#### Opción 3: Línea de comandos  
+# Opción 3: Línea de comandos  
 1. Abre una terminal:  
    - Puedes usar **CMD** o la terminal integrada en **VS Code**.  
 
@@ -67,7 +68,7 @@ cd ApiCandySoft
 
 ---
 
-### 2. Crear archivo `.env`
+# 2. Crear archivo `.env`
 1. Créalo dentro de la carpeta **apiCandySoft**.  
 2. Copia y pega el siguiente código:  
 
@@ -102,18 +103,18 @@ IMGBB_API_KEY='fec1ab2811dc77a5801a0952fead16'
 
 ---
 
-### 3. Crear entorno virtual
+# 3. Crear entorno virtual
 python -m venv venv
 
 
-### 4. Activar entorno virtual en PowerShell 
+# 4. Activar entorno virtual en PowerShell 
 .\venv\Scripts\activate
 
 
-### 5. Instalar dependencias
+# 5. Instalar dependencias
 pip install -r requirements.txt
 
-### 6.Importar base de datos con el archivo SQL
+# 6.Importar base de datos con el archivo SQL
 
 # Primero debes crear la base de datos vacía en MySQL
 CREATE DATABASE CandySoftApi2;
@@ -123,11 +124,11 @@ CREATE DATABASE CandySoftApi2;
 Get-Content db_apicandysoft.sql  | & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p --port=3308 CandySoftApi2 
 
 
-### 7. Ingresar a la carpeta principal donde está manage.py
+# 7. Ingresar a la carpeta principal donde está manage.py
 cd apiCandySoft
 
 
-### 8. Migrar base de datos (opcional)
+# 8. Migrar base de datos (opcional)
 # Solo usa esta opción si no funciona la importación con el archivo SQL.
 python manage.py migrate
 
