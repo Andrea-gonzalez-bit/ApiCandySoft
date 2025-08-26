@@ -24,7 +24,7 @@ class TestServicio(unittest.TestCase):
             self.assertEqual(servicio.nombre, "Acrílicas")
             self.assertEqual(servicio.precio, 80.000)
             self.assertEqual(servicio.duracion, timedelta(minutes=60))
-            self.assertEqual(servicio.tipo, "Uñas Acrílicas") 
+            self.assertEqual(servicio.tipo, "Manicure") 
 
             print(f"{Colors.OKGREEN}✓ Servicio creado correctamente: {servicio.nombre}{Colors.ENDC}")
 

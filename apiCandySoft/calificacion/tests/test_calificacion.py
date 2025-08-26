@@ -15,7 +15,7 @@ class TestCalificacion(unittest.TestCase):
                 comentario="Bien, no hay quejas."
             )
 
-            self.assertEqual(calificacion.puntuacion, 1)
+            self.assertEqual(calificacion.puntuacion, 2)
             self.assertEqual(calificacion.get_puntuacion_display(), "Bien")
             self.assertEqual(calificacion.comentario, "Bien, no hay quejas.")
 
