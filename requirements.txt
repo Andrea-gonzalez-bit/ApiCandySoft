@@ -23,6 +23,7 @@ jsonschema-specifications==2025.4.1
 mysqlclient==2.2.7
 packaging==25.0
 pillow==11.2.1
+psycopg2==2.9.10
 PyJWT==2.9.0
 PySocks==1.7.1
 python-decouple==3.8
@@ -39,3 +40,4 @@ uritemplate==4.1.1
 urllib3==2.4.0
 zope.event==5.0
 zope.interface==7.2
+dj-database-url==3.0.1

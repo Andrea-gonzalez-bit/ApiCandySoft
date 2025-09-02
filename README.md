@@ -120,6 +120,34 @@ IMGBB_API_KEY='fec1ab2811dc77a5801a0952fead16'
 
 ---
 
+# Configuración adicional de la base de datos
+1. Dirígete a la carpeta del proyecto `apiCandySoft`.  
+2. Ingresa al archivo `settings.py`. 
+3. Ubica el siguiente bloque de código de configuración de la base de datos:
+
+  ```
+   # base de datos
+   DATABASES = {
+       'default':{
+           'ENGINE': os.getenv("DB_ENGINE"),
+           'NAME': os.getenv("DB_NAME"),
+           'USER': os.getenv("DB_USER"),
+           'PASSWORD': os.getenv("DB_PASSWORD"),
+           'HOST': os.getenv("DB_HOST"),
+           'PORT': os.getenv("DB_PORT"),
+       }
+   }
+   ```
+
+5. Después de ese código, agrega la siguiente configuración dentro del mismo diccionario 'default':
+
+ ```
+   'OPTIONS': {
+       'charset': 'utf8mb4',
+   },
+ ```
+
+
 # 3. Crear entorno virtual
 python -m venv venv
 
@@ -175,6 +203,10 @@ python manage.py test calificacion.tests.test_calificacion
 Este proyecto cuenta con un flujo de integración continua (CI) configurado con GitHub Actions.
 Cada vez que haces un push o un pull request hacia la rama main, se ejecutan automáticamente las pruebas unitarias del proyecto.
 
+**Nota importante**
+
+Ya el código de .github/workflows/django-tests.yml esta actualizado según Despliegue en IaaS
+
 ---
 
 ## Ubicación del workflow
@@ -192,18 +224,13 @@ El flujo se encuentra en el archivo:
 ## ¿Qué hace el workflow?
 
 - Configura un entorno en Ubuntu.
-
-- Levanta un servicio de MySQL 8.0.
-
+- Levanta un servicio de PostgreSQL 14 (antes era MySQL 8.0, ya se actualizó).
 - Instala Python 3.10.
-
-- Instala las dependencias (requirements.txt).
-
-- Configura las variables de entorno de Django (similares al .env).
-
-- Ejecuta las migraciones (python manage.py migrate).
-
-- Corre todas las pruebas (python manage.py test).
+- Instala las dependencias desde `requirements.txt`.
+- Configura las variables de entorno de Django (simulando lo que está en el `.env`).
+- Usa la variable `DATABASE_URL` para conectarse a la base de datos de pruebas en PostgreSQL.
+- Ejecuta las migraciones con `python manage.py migrate`.
+- Corre todas las pruebas unitarias con `python manage.py test`.
 
 ---
 
@@ -221,7 +248,7 @@ El flujo se encuentra en el archivo:
 
 ---
 
-👉 [Ver ejecuciones en GitHub Actions](https://github.com/Andrea-gonzalez-bit/ApiCandySoft/actions)
+[Ver ejecuciones en GitHub Actions](https://github.com/Andrea-gonzalez-bit/ApiCandySoft/actions)
 
 **Nota importante**
 
@@ -230,6 +257,110 @@ Ese enlace abre la pestaña **Actions** del repositorio, donde podrás ver:
 - Ver todas las ejecuciones pasadas del flujo `django-tests.yml`.
 - Revisar si un commit pasó o falló las pruebas.
 - Consultar los logs detallados de cada paso del workflow.
+
+---
+
+# Despliegue en IaaS (Trabajo implantación)
+
+API Rest desarrollada en **Django Rest Framework**, desplegada en **Render** y conectada a **Supabase (PostgreSQL)**.
+
+---
+
+## Deploy
+- API principal: https://apicandysoft.onrender.com/
+- Documentación Swagger: https://apicandysoft.onrender.com/api/docs/swagger/
+- Documentación ReDoc: https://apicandysoft.onrender.com/api/docs/redoc/
+
+---
+
+## Tecnologías
+- Django Rest Framework
+- PostgreSQL (Supabase)
+- Render (IaaS)
+
+---
+
+## Uso de la API
+Ejemplo de endpoints disponibles:
+- `GET /api/usuario/` → Lista de usuarios
+- `POST /api/auth/` → Autenticación
+- `GET /api/servicio/` → Lista de servicios
+
+---
+
+## Correr localmente
+
+```bash
+
+# 1. Clonar el repositorio
+
+# Opción 1: Clonar desde GitHub  
+1. Entra al repositorio en GitHub y da clic en el botón **Code**.  
+2. Copia el enlace HTTPS que aparece.  
+3. Abre **Visual Studio Code (VS Code)**.  
+4. Dirígete a la barra lateral izquierda y selecciona el ícono de **Source Control**.  
+5. Haz clic en **Clonar repositorio**.  
+6. Pega el enlace que copiaste de GitHub.  
+7. Selecciona la carpeta en tu equipo donde quieras guardar el proyecto.  
+8. Una vez finalizada la clonación, **VS Code** abrirá automáticamente el proyecto.  
+
+# Opción 2: Descargar en ZIP  
+1. Entra al repositorio en GitHub y da clic en el botón **Code**.  
+2. Selecciona la opción **Download ZIP**.  
+   - Esto descargará el proyecto comprimido en tu computador.  
+3. Una vez descargado, busca el archivo donde se haya descargado. 
+4. Descomprime el archivo y ábrelo en **VS Code**. 
+
+# Opción 3: Línea de comandos  
+1. Abre una terminal:  
+   - Puedes usar **CMD** o la terminal integrada en **VS Code**.  
+
+2. Escribe el siguiente comando:  
+git clone https://github.com/Andrea-gonzalez-bit/ApiCandySoft.git
+cd ApiCandySoft
+
+# 2. Crear archivo .env
+# - Crealo dentro de la carpeta apiCandySoft, se debe llamar asi .env
+# - Copia y pega el siguiente código
+
+# No cambiar nada, ya que son los datos de la base de datos (Supebase)
+
+SECRET_KEY=django-insecure-$=ae#$xpmjkw=7v&&0kv@$a)j+o9ti%u%z+tygd#3nzju=pajc
+DEBUG=True
+
+DATABASE_URL=postgresql://postgres.tshedqxfkkyhivglydzl:Gonzalezpineda1032*@aws-1-us-east-1.pooler.supabase.com:6543/postgres
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=candysoftpruebaapi@gmail.com
+EMAIL_HOST_PASSWORD=ikyp huvb lnia zekw
+
+IMGBB_API_KEY=fec1ba28d181c77a5801a0952fead016
+
+# Abre la terminal (PowerShell) y ejecuta los siguientes comandos en este orden
+
+# 3. Crear entorno virtual
+python -m venv venv
+
+# 4. Activar entorno virtual (en PowerShell)
+.\venv\Scripts\activate
+
+# 5. Ingresar a la carpeta principal donde está manage.py
+cd apiCandySoft
+
+# 6. Instalar dependencias 
+pip install -r requirements.txt
+
+# 7. Migrar base de datos con Django
+python manage.py migrate
+
+# ⚠️ Nota: El comando anterior aplicará migraciones en la base de datos definida en tu archivo `.env`.
+# Si usas la misma `DATABASE_URL` de producción (Supabase), los cambios se reflejarán directamente en la base en la nube.
+# Se recomienda tener una base de datos separada para desarrollo y pruebas.
+
+# 8. Levantar el servidor
+python manage.py runserver
 
 
 
