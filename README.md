@@ -267,9 +267,7 @@ API Rest desarrollada en **Django Rest Framework**, desplegada en **Render** y c
 ---
 
 ## Deploy
-- API principal: https://apicandysoft.onrender.com/
-- Documentación Swagger: https://apicandysoft.onrender.com/api/docs/swagger/
-- Documentación ReDoc: https://apicandysoft.onrender.com/api/docs/redoc/
+- API principal: https://apicandysoft-kcow.onrender.com
 
 ---
 
@@ -328,7 +326,7 @@ cd ApiCandySoft
 SECRET_KEY=django-insecure-$=ae#$xpmjkw=7v&&0kv@$a)j+o9ti%u%z+tygd#3nzju=pajc
 DEBUG=True
 
-DATABASE_URL=postgresql://postgres.tshedqxfkkyhivglydzl:Gonzalezpineda1032*@aws-1-us-east-1.pooler.supabase.com:6543/postgres
+DATABASE_URL=postgresql://postgres.tshedqxfkkyhivglydzl:Gonzalez_pineda1032@aws-1-us-east-1.pooler.supabase.com:6543/postgres
 
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
