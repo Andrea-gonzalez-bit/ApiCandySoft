@@ -212,7 +212,7 @@ python manage.py test servicio.tests.test_servicio
 # Módulo calificación (Carpeta calificacion/tests/)
 python manage.py test calificacion.tests.test_calificacion
 
-
+```
 
 # Automatización de pruebas con GitHub Actions (Trabajo implantación)
 
