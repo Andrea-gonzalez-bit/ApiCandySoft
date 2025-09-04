@@ -123,29 +123,45 @@ IMGBB_API_KEY='fec1ab2811dc77a5801a0952fead16'
 # Configuración adicional de la base de datos
 1. Dirígete a la carpeta del proyecto `apiCandySoft`.  
 2. Ingresa al archivo `settings.py`. 
-3. Ubica el siguiente bloque de código de configuración de la base de datos:
+3. Ubica el siguiente bloque 
 
-  ```
-   # base de datos
-   DATABASES = {
-       'default':{
-           'ENGINE': os.getenv("DB_ENGINE"),
-           'NAME': os.getenv("DB_NAME"),
-           'USER': os.getenv("DB_USER"),
-           'PASSWORD': os.getenv("DB_PASSWORD"),
-           'HOST': os.getenv("DB_HOST"),
-           'PORT': os.getenv("DB_PORT"),
-       }
-   }
-   ```
+# Actualmente, el bloque de código luce así:
+db_url = os.getenv("DATABASE_URL")
 
-5. Después de ese código, agrega la siguiente configuración dentro del mismo diccionario 'default':
+if db_url and "sslmode=disable" in db_url:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            db_url,
+            conn_max_age=600,
+            ssl_require=False
+        )
+    }
+else:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            db_url,
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
 
- ```
-   'OPTIONS': {
-       'charset': 'utf8mb4',
-   },
- ```
+
+# Debes de remplazar por este:
+# El bloque de configuración actualizado quedaría de la siguiente forma:
+
+DATABASES = {
+    'default':{
+        'ENGINE': os.getenv("DB_ENGINE"),
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+        'OPTIONS': {
+          'charset' : 'utf8mb4',
+        }
+    }
+}
 
 
 # 3. Crear entorno virtual
